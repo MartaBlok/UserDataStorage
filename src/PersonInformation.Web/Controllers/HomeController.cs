@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Xml;
 using PersonInformation.Web.Models;
 using PersonInformation.DataLogger.Interfaces;
 using EnsureThat;
@@ -13,10 +14,14 @@ namespace PersonInformation.Web.Controllers
     {
         private readonly IUserDataLogger _userLogger;
 
-        public HomeController(IUserDataLogger userLogger)
+        //public HomeController(IUserDataLogger userLogger)
+        //{
+        //    Ensure.That(() => userLogger).IsNotNull();
+        //    _userLogger = userLogger;
+        //}
+
+        public HomeController()
         {
-            Ensure.That(() => userLogger).IsNotNull();
-            _userLogger = userLogger;
         }
 
         public ActionResult Index()
@@ -33,6 +38,25 @@ namespace PersonInformation.Web.Controllers
 
 
             return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public void LogData(PersonData personData)
+        {
+            var settings = new XmlWriterSettings
+            {
+                OmitXmlDeclaration = true,
+                Indent = true
+            };
+
+            using (XmlWriter writer = XmlWriter.Create(Console.Out, settings))
+            {
+                writer.WriteStartElement("User");
+                writer.WriteAttributeString("Name", personData.Name);
+                writer.WriteElementString("Surname", personData.Surname);
+                writer.WriteElementString("Address", personData.Address);
+                writer.WriteEndElement();
+            }
         }
     }
 }

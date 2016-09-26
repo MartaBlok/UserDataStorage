@@ -9,7 +9,7 @@ using NLog;
 
 namespace PersonInformation.DataLogger.Implementations
 {
-    class TextDataLogStorage : IUserDataLogStorage
+    public class TextDataLogStorage : IUserDataLogStorage
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
 

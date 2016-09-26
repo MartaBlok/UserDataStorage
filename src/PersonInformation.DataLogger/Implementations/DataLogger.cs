@@ -16,11 +16,7 @@ namespace PersonInformation.DataLogger.Implementations
         // to be sure that there are not ambiguity during DI resolving
         public DataLogger(ICollection<IUserDataLogStorage> logStorages)
         {
-            _logStorages = logStorages;
-            if (_logStorages == null)
-            {
-                _logStorages = new List<IUserDataLogStorage>();
-            }
+            _logStorages = logStorages ?? new List<IUserDataLogStorage>();
         }
 
         public void Log(UserData data)

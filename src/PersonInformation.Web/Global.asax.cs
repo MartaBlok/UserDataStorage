@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using PersonInformation.DataLogger.Interfaces;
 using SimpleInjector;
 using SimpleInjector.Integration.Web;
 using SimpleInjector.Integration.Web.Mvc;
@@ -17,6 +18,9 @@ namespace PersonInformation.Web
         {
             var container = new Container();
             container.Options.DefaultScopedLifestyle = new WebRequestLifestyle();
+            //container.Register<IUserDataLogStorage, DataLogger.Implementations.TextDataLogStorage>();
+            //container.Register<IEnumerable<IUserDataLogStorage>, IEnumerable<DataLogger.Implementations.TextDataLogStorage>>();
+            //container.Register<IUserDataLogger, DataLogger.Implementations.DataLogger>();
             container.Verify();
 
             DependencyResolver.SetResolver(new SimpleInjectorDependencyResolver(container));

@@ -1,9 +1,8 @@
 ﻿@model PersonInformation.Web.Models.PersonData
-
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <br />
         <h4>Fill the form with personal information</h4>
@@ -40,3 +39,4 @@
         </div>
     </div>
 }
+<button id="log" class="btn btn-default">Log it</button>
