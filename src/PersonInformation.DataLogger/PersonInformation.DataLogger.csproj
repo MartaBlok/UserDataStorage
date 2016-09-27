@@ -48,8 +48,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Implementations\DataLogger.cs" />
+    <Compile Include="Implementations\UserDataLogger.cs" />
     <Compile Include="Implementations\TextDataLogStorage.cs" />
+    <Compile Include="Implementations\XmlDataLogStorage.cs" />
     <Compile Include="Interfaces\IUserDataLogger.cs" />
     <Compile Include="Interfaces\IUserDataLogStorage.cs" />
     <Compile Include="Models\UserDataLogDTO.cs" />

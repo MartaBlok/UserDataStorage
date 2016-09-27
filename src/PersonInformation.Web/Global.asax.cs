@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
-using PersonInformation.DataLogger.Interfaces;
 using SimpleInjector;
-using SimpleInjector.Integration.Web;
 using SimpleInjector.Integration.Web.Mvc;
+using PersonInformation.Web.App_Start;
 
 namespace PersonInformation.Web
 {
@@ -16,13 +11,7 @@ namespace PersonInformation.Web
     {
         protected void Application_Start()
         {
-            var container = new Container();
-            container.Options.DefaultScopedLifestyle = new WebRequestLifestyle();
-            //container.Register<IUserDataLogStorage, DataLogger.Implementations.TextDataLogStorage>();
-            //container.Register<IEnumerable<IUserDataLogStorage>, IEnumerable<DataLogger.Implementations.TextDataLogStorage>>();
-            //container.Register<IUserDataLogger, DataLogger.Implementations.DataLogger>();
-            container.Verify();
-
+            var container = new Container().Configure();
             DependencyResolver.SetResolver(new SimpleInjectorDependencyResolver(container));
 
             AreaRegistration.RegisterAllAreas();

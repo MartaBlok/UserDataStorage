@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using PersonInformation.DataLogger.Interfaces;
 using PersonInformation.DataLogger.Models;
 using NLog;
@@ -14,38 +9,27 @@ namespace PersonInformation.DataLogger.Implementations
 {
     public class TextDataLogStorage : IUserDataLogStorage
     {
-        private static Logger _logger = LogManager.GetCurrentClassLogger();
+        private readonly Logger _logger;
 
-        public void Log(UserData user)
+        public TextDataLogStorage(string logName)
         {
-            var configMapper = new MapperConfiguration(cfg => {
-                cfg.CreateMap<UserData, UserDataLogDTO>();
-            });
-
-            IMapper mapper = configMapper.CreateMapper();
-            
-            var userDto = mapper.Map<UserData, UserDataLogDTO>(user);
-            
-            // Step 1. Create configuration object 
             var config = new LoggingConfiguration();
-
-            // Step 2. Create targets and add them to the configuration 
-            var fileTarget = new FileTarget();
+            var fileTarget = new FileTarget
+            {
+                FileName = "${basedir}/" + logName,
+                Layout = "${message}"
+            };
             config.AddTarget("log", fileTarget);
-
-            // Step 3. Set target properties 
-            fileTarget.FileName = "${basedir}/log.txt";
-            fileTarget.Layout = "${message}";
-
-            // Step 4. Define rules
             var rule = new LoggingRule("*", LogLevel.Info, fileTarget);
             config.LoggingRules.Add(rule);
-
-            // Step 5. Activate the configuration
             LogManager.Configuration = config;
-            
+
             _logger = LogManager.GetLogger("TextDataLogStorage");
-            _logger.Info($"{userDto.Name}, {userDto.Surname}");
+        }
+
+        public void Log(UserDataLogDTO user)
+        {        
+            _logger.Info($"{user.Name}, {user.Surname}");
         }
     }
 }

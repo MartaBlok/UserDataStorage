@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace PersonInformation.DataLogger.Models
+﻿namespace PersonInformation.DataLogger.Models
 {
     public class UserData
     {
