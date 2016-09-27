@@ -5,7 +5,7 @@ VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersonInformation.Web", "PersonInformation.Web\PersonInformation.Web.csproj", "{E77ECEF9-E0DB-4CA0-926B-358A4200B785}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersonInformation.Web.Tests", "PersonInformation.Web.Tests\PersonInformation.Web.Tests.csproj", "{97321DC0-509B-4479-8EC8-A8C8C892E0D4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersonInformation.Tests", "PersonInformation.Web.Tests\PersonInformation.Tests.csproj", "{97321DC0-509B-4479-8EC8-A8C8C892E0D4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersonInformation.DataLogger", "PersonInformation.DataLogger\PersonInformation.DataLogger.csproj", "{B9C8ABFB-035D-4F05-894C-D8476220FB8D}"
 EndProject
