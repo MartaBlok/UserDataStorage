@@ -38,7 +38,7 @@ namespace PersonInformation.Web.Controllers
             // automapper map PersonData to UserData
             // call _userLogger.Log(UserData)
             TextDataLogStorage textLogger = new TextDataLogStorage();
-            var userDto = new UserDataLogDTO {Name = personData.Name, Surname = personData.Surname};
+            var userDto = new UserData {Name = personData.Name, Surname = personData.Surname};
             textLogger.Log(userDto);
 
             return RedirectToAction("Index");

@@ -22,12 +22,12 @@ namespace PersonInformation.DataLogger.Implementations
         public void Log(UserData data)
         {
             // automapper map UserData to LogDTO
-            UserDataLogDTO dto = null;
+            //UserDataLogDTO dto = null;
 
-            Parallel.ForEach(_logStorages, s =>
-            {
-                s.Log(dto);
-            });
+            //Parallel.ForEach(_logStorages, s =>
+            //{
+            //    s.Log(dto);
+            //});
         }
     }
 }
