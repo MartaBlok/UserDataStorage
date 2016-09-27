@@ -7,6 +7,8 @@ using System.Xml;
 using PersonInformation.Web.Models;
 using PersonInformation.DataLogger.Interfaces;
 using EnsureThat;
+using PersonInformation.DataLogger.Implementations;
+using PersonInformation.DataLogger.Models;
 
 namespace PersonInformation.Web.Controllers
 {
@@ -31,11 +33,13 @@ namespace PersonInformation.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult SavePersonDataForm(PersonData personData)
+        public ActionResult Index(PersonData personData)
         {
             // automapper map PersonData to UserData
             // call _userLogger.Log(UserData)
-
+            TextDataLogStorage textLogger = new TextDataLogStorage();
+            var userDto = new UserDataLogDTO {Name = personData.Name, Surname = personData.Surname};
+            textLogger.Log(userDto);
 
             return RedirectToAction("Index");
         }

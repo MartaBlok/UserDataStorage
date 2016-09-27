@@ -25,7 +25,6 @@ namespace PersonInformation.Web
 
             DependencyResolver.SetResolver(new SimpleInjectorDependencyResolver(container));
 
-
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
