@@ -1,4 +1,8 @@
-﻿using Xunit;
+﻿using NSubstitute;
+using PersonInformation.DataLogger.Interfaces;
+using PersonInformation.DataLogger.Models;
+using PersonInformation.Web.Controllers;
+using Xunit;
 
 namespace PersonInformation.Tests.Controllers
 {
@@ -8,15 +12,20 @@ namespace PersonInformation.Tests.Controllers
         public void Index()
         {
             // Arrange
-            //private readonly IUserDataLogger _userLogger;
-       
-            //HomeController controller = new HomeController(_userLogger);
+            var _userLogger = Substitute.For<IUserDataLogger>();
+            var controller = new HomeController(_userLogger);
 
             //// Act
-            //ViewResult result = controller.Index() as ViewResult;
+            var result = controller.Index(new Web.Models.PersonData
+            {
+                Address = "TestAddress",
+                Name = "TestName",
+                Surname  = "TestSurname"
+            });
 
             //// Assert
-            //Assert.IsNotNull(result);
+            Assert.NotNull(result);
+            _userLogger.Received().Log(Arg.Any<UserData>());
         }
     }
 }
