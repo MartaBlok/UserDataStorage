@@ -16,7 +16,7 @@ namespace PersonInformation.Web.App_Start
             {
                 new TextDataLogStorage("log.txt"),
                 new XmlDataLogStorage(),
-                //new DbDataLogStorage()
+                new DatabaseDataLogStorage()
             }, Lifestyle.Singleton);
             container.Register<IUserDataLogger, UserDataLogger>(Lifestyle.Singleton);
 

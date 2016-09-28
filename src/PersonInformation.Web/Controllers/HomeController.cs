@@ -19,10 +19,6 @@ namespace PersonInformation.Web.Controllers
             _userLogger = userLogger;
         }
 
-        public HomeController()
-        {
-        }
-
         public ActionResult Index()
         {
             var personData = new PersonData { Name = "Name test", Surname = "Surname test", Address = "Address test" };
@@ -34,12 +30,6 @@ namespace PersonInformation.Web.Controllers
         {
             _userLogger.Log(new UserData { Name = personData.Name, Surname = personData.Surname });
             return RedirectToAction("Index");
-        }
-
-        [HttpPost]
-        public void LogData(PersonData personData)
-        {
-            
         }
     }
 }
