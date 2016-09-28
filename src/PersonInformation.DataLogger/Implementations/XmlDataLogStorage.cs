@@ -20,7 +20,7 @@ namespace PersonInformation.DataLogger.Implementations
             newUser.InnerText = $"{user.Name} {user.Surname}";
             documentLog.DocumentElement?.AppendChild(newUser);
 
-            XmlWriter writer = XmlWriter.Create(@"C:\logXmlWriter.xml", null);
+            XmlWriter writer = XmlWriter.Create(@"C:\Temp\logXmlWriter.xml", null);
             documentLog.Save(writer);
         }
     }

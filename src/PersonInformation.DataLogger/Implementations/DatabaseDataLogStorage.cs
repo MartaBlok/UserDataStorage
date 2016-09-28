@@ -18,7 +18,7 @@ namespace PersonInformation.DataLogger.Implementations
         }
         public void Log(UserDataLogDTO user)
         {
-            using (var db = new LiteDatabase(@"LogStorage.db"))
+            using (var db = new LiteDatabase(@"C:\Temp\LogStorage.db"))
             {
                 var usersData = db.GetCollection<UserDataLogDTO>("users");
                 usersData.Insert(user);
