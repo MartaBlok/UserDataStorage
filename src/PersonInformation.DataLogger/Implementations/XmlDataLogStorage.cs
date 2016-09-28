@@ -7,26 +7,21 @@ namespace PersonInformation.DataLogger.Implementations
 {
     public class XmlDataLogStorage : IUserDataLogStorage
     {
+        private XmlDocument documentLog;
         public XmlDataLogStorage()
         {
-
+            documentLog = new XmlDocument();
+            documentLog.LoadXml("<item><name>User Storage Log</name></item>");
         }
 
-        public void Log(UserDataLogDTO dto)
+        public void Log(UserDataLogDTO user)
         {
-            var settings = new XmlWriterSettings
-            {
-                OmitXmlDeclaration = true,
-                Indent = true
-            };
+            XmlElement newUser = documentLog.CreateElement("User");
+            newUser.InnerText = $"{user.Name} {user.Surname}";
+            documentLog.DocumentElement?.AppendChild(newUser);
 
-            using (XmlWriter writer = XmlWriter.Create(Console.Out, settings))
-            {
-                writer.WriteStartElement("User");
-                writer.WriteAttributeString("Name", dto.Name);
-                writer.WriteElementString("Surname", dto.Surname);
-                writer.WriteEndElement();
-            }
+            XmlWriter writer = XmlWriter.Create(@"C:\logXmlWriter.xml", null);
+            documentLog.Save(writer);
         }
     }
 }
